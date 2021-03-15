@@ -15,7 +15,7 @@ class RecordCommandTest {
     @Test
     public void executeRecordCommand_noPatientLoaded_exceptionThrown() {
         Data data = new Data();
-        Ui ui = new Ui();
+        final Ui ui = new Ui();
         Patient patient = new Patient("S1234567A");
         data.setPatient(patient);
         HashMap<String, String> arguments = new HashMap<>();
@@ -31,7 +31,7 @@ class RecordCommandTest {
     @Test
     public void executeRecordCommand_patientLoaded_recordAdded() {
         Data data = new Data();
-        Ui ui = new Ui();
+        final Ui ui = new Ui();
         Patient patient = new Patient("S1234567A");
         data.setPatient(patient);
         data.loadCurrentPatient(patient.getID());
@@ -51,7 +51,7 @@ class RecordCommandTest {
     @Test
     public void executeRecordCommand_patientLoaded_dataUpdated() {
         Data data = new Data();
-        Ui ui = new Ui();
+        final Ui ui = new Ui();
         Patient patient = new Patient("S1234567A");
         data.setPatient(patient);
         data.loadCurrentPatient(patient.getID());

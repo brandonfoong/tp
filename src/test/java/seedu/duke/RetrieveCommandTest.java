@@ -16,7 +16,7 @@ class RetrieveCommandTest {
     @Test
     public void executeRetrieveCommand_noPatientLoaded_exceptionThrown() {
         Data data = new Data();
-        Ui ui = new Ui();
+        final Ui ui = new Ui();
         Patient patient = new Patient("S1234567A");
         data.setPatient(patient);
         HashMap<String, String> arguments = new HashMap<>();
@@ -32,7 +32,7 @@ class RetrieveCommandTest {
     @Test
     public void executeRetrieveCommand_patientLoadedAndRecordsAdded_printsRecords() {
         Data data = new Data();
-        Ui ui = new Ui();
+        final Ui ui = new Ui();
         Patient patient = new Patient("S1234567A");
         data.setPatient(patient);
         data.loadCurrentPatient(patient.getID());
@@ -57,8 +57,8 @@ class RetrieveCommandTest {
         } catch (Exception exception) {
             System.out.println("An error occurred while running tests");
         }
-        assertEquals("Here are the records for patient " + patient.getID() + System.lineSeparator() +
-                "coughing" + System.lineSeparator(), bos.toString());
+        assertEquals("Here are the records for patient " + patient.getID() + System.lineSeparator()
+                + "coughing" + System.lineSeparator(), bos.toString());
 
         // Bind System.out back to standard output
         System.setOut(originalOut);
