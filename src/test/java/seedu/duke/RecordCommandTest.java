@@ -5,9 +5,7 @@ import seedu.duke.command.RecordCommand;
 import seedu.duke.model.Patient;
 import seedu.duke.model.Record;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,12 +15,13 @@ class RecordCommandTest {
     @Test
     public void executeRecordCommand_noPatientLoaded_exceptionThrown() {
         Data data = new Data();
+        Ui ui = new Ui();
         Patient patient = new Patient("S1234567A");
         data.setPatient(patient);
         HashMap<String, String> arguments = new HashMap<>();
         arguments.put("command", "record");
         arguments.put("payload", "coughing");
-        RecordCommand recordCommand = new RecordCommand(null, data, arguments);
+        RecordCommand recordCommand = new RecordCommand(ui, data, arguments);
         Exception exception = assertThrows(Exception.class, () -> {
             recordCommand.execute();
         });
@@ -32,13 +31,14 @@ class RecordCommandTest {
     @Test
     public void executeRecordCommand_patientLoaded_recordAdded() {
         Data data = new Data();
+        Ui ui = new Ui();
         Patient patient = new Patient("S1234567A");
         data.setPatient(patient);
         data.loadCurrentPatient(patient.getID());
         HashMap<String, String> arguments = new HashMap<>();
         arguments.put("command", "record");
         arguments.put("payload", "coughing");
-        RecordCommand recordCommand = new RecordCommand(null, data, arguments);
+        RecordCommand recordCommand = new RecordCommand(ui, data, arguments);
         try {
             recordCommand.execute();
         } catch (Exception exception) {
@@ -51,13 +51,14 @@ class RecordCommandTest {
     @Test
     public void executeRecordCommand_patientLoaded_dataUpdated() {
         Data data = new Data();
+        Ui ui = new Ui();
         Patient patient = new Patient("S1234567A");
         data.setPatient(patient);
         data.loadCurrentPatient(patient.getID());
         HashMap<String, String> arguments = new HashMap<>();
         arguments.put("command", "record");
         arguments.put("payload", "coughing");
-        RecordCommand recordCommand = new RecordCommand(null, data, arguments);
+        RecordCommand recordCommand = new RecordCommand(ui, data, arguments);
         try {
             recordCommand.execute();
         } catch (Exception exception) {

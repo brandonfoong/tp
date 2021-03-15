@@ -22,7 +22,6 @@ public class RetrieveCommand extends Command {
 
     @Override
     public void execute() throws Exception {
-        // TODO: Replace System.out.println() with ui after ui is implemented
         // TODO: Implement proper exception
         Patient patient = data.currentPatient;
         if (patient == null) {
@@ -30,7 +29,7 @@ public class RetrieveCommand extends Command {
         }
         ArrayList<Record> records = patient.getRecords();
         for (Record record : records) {
-            System.out.println(record);
+            ui.printMessage(record.toString());
         }
     }
 }
