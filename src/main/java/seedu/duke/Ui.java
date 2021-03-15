@@ -38,4 +38,20 @@ public class Ui {
         System.out.println(message);
     }
 
+    /**
+     * Prints a welcome message.
+     */
+    public void printWelcome() {
+        printMessage("Welcome to the Patient Manager.\n");
+        printMessage("Please input a command: ");
+    }
+
+    /**
+     * Prints the exception message specified in @param.
+     * @param e Exception to be printed
+     */
+    public void printException(Exception e) {
+        printMessage(e.toString());
+    }
+
 }
