@@ -57,7 +57,8 @@ class RetrieveCommandTest {
         } catch (Exception exception) {
             System.out.println("An error occurred while running tests");
         }
-        assertEquals("coughing" + System.lineSeparator(), bos.toString());
+        assertEquals("Here are the records for patient " + patient.getID() + System.lineSeparator() +
+                "coughing" + System.lineSeparator(), bos.toString());
 
         // Bind System.out back to standard output
         System.setOut(originalOut);
