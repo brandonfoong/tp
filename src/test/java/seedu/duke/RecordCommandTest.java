@@ -47,4 +47,24 @@ class RecordCommandTest {
         ArrayList<Record> records = patient.getRecords();
         assertEquals(1, records.size());
     }
+
+    @Test
+    public void executeRecordCommand_patientLoaded_dataUpdated() {
+        Data data = new Data();
+        Patient patient = new Patient("S1234567A");
+        data.setPatient(patient);
+        data.loadCurrentPatient(patient.getID());
+        HashMap<String, String> arguments = new HashMap<>();
+        arguments.put("command", "record");
+        arguments.put("payload", "coughing");
+        RecordCommand recordCommand = new RecordCommand(null, data, arguments);
+        try {
+            recordCommand.execute();
+        } catch (Exception exception) {
+            System.out.println("An error occurred while running tests");
+        }
+        Patient patientFromData = data.getPatient(patient.getID());
+        ArrayList<Record> records = patientFromData.getRecords();
+        assertEquals(1, records.size());
+    }
 }
