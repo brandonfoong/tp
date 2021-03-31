@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.Data;
 import seedu.duke.Ui;
+import seedu.duke.exception.InvalidInputException;
 
 import java.util.HashMap;
 
@@ -18,11 +19,11 @@ public class CurrentCommand extends Command {
     }
 
     @Override
-    public void execute() {
-        if (data.currentPatient != null) {
-            ui.printMessage("The currently loaded patient's ID is " + data.currentPatient.getID() + ".");
-        } else {
-            ui.printMessage("There is no patient being loaded now.");
-        }
+    public void execute() throws InvalidInputException {
+        ui.printMessage("The currently loaded patient's ID is " + data.getCurrentPatientId() + ".");
+//        if (data.currentPatient != null) {
+//        } else {
+//            ui.printMessage("There is no patient being loaded now.");
+//        }
     }
 }

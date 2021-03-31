@@ -1,8 +1,10 @@
 package seedu.duke;
 
+import java.time.LocalDate;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import seedu.duke.exception.InvalidInputException;
 import seedu.duke.exception.StorageException;
 import seedu.duke.model.Patient;
 
@@ -20,7 +22,7 @@ public class Data {
      * Before modification, if not loaded, it needs to call loadCurrentPatient(id) to load the patient.
      * After modification, saveCurrentPatient() needs to be called to write back any changes on this attribute.
      */
-    public Patient currentPatient;
+    private Patient currentPatient;
 
     /**
      * This initializes an empty data instance with no storage instance.
@@ -32,6 +34,7 @@ public class Data {
 
     /**
      * This initializes an empty data instance with a storage instance.
+     *
      * @param storage an instance of the storage class
      */
     public Data(Storage storage) {
@@ -42,7 +45,8 @@ public class Data {
      * This initializes a data instance with an existing patient list.
      * Storage instance must be specified if want to use an existing list of patients. However it can be set
      * to null (i.e. new Data(null, existingPatients)) for testing purposes.
-     * @param storage an instance of the storage class
+     *
+     * @param storage  an instance of the storage class
      * @param patients the patient list
      */
     public Data(Storage storage, SortedMap<String, Patient> patients) {
@@ -51,8 +55,76 @@ public class Data {
         currentPatient = null;
     }
 
+    private void checkPatientLoaded() throws InvalidInputException {
+        if (currentPatient == null) {
+            throw new InvalidInputException(InvalidInputException.Type.NO_PATIENT_LOADED);
+        }
+    }
+
+    /**
+     * Gets the ID number of the currently loaded patient
+     *
+     * @return ID number of the currently loaded patient
+     * @throws InvalidInputException if there is no loaded patient
+     */
+    public String getCurrentPatientId() throws InvalidInputException {
+        checkPatientLoaded();
+        return currentPatient.getID();
+    }
+
+    /**
+     * Adds a visit record to the currently loaded patient
+     *
+     * @param date         the date of visit
+     * @param symptom      symptom(s) experienced by the patient
+     * @param diagnosis    diagnosis/es made by the doctor
+     * @param prescription prescription(s) made by the doctor
+     * @throws InvalidInputException if there is no loaded patient
+     */
+    public void addRecord(LocalDate date, String symptom, String diagnosis, String prescription)
+            throws InvalidInputException {
+        checkPatientLoaded();
+        currentPatient.addRecord(date, symptom, diagnosis, prescription);
+    }
+
+    /**
+     * Prints out all records of the currently loaded patient
+     *
+     * @return a String containing the patient's records
+     * @throws InvalidInputException if there is no loaded patient
+     */
+    public String getRecords() throws InvalidInputException {
+    }
+
+    /**
+     * Prints out all records of the currently loaded patient for a specific date
+     *
+     * @param date the date to retrieve records for
+     * @return a String containing the patient's records for that date
+     * @throws InvalidInputException if there is no loaded patient,
+     * or if the patient does not have any records on that date
+     */
+    public String getRecords(LocalDate date) throws InvalidInputException {
+
+    }
+
+    /**
+     * Loads a existing patient into the currentPatient variable, based on the ID number specified
+     *
+     * @param id the ID number of the patient to be loaded
+     * @throws InvalidInputException if no patient corresponds to the specified ID number
+     */
+    public void loadPatient(String id) throws InvalidInputException {
+        if (!patients.containsKey(id)) {
+            throw new InvalidInputException(InvalidInputException.Type.INVALID_PATIENT);
+        }
+        currentPatient = patients.get(id);
+    }
+
+
     /**
      * This retrieves the full hashmap of patients.
+     *
      * @return the patient hashmap
      */
     public SortedMap<String, Patient> getPatients() {
@@ -61,6 +133,7 @@ public class Data {
 
     /**
      * This retrieves a single patient bases on its unique identifier.
+     *
      * @param id unique identifier of the patient to be retrieved
      * @return the patient instance associated with this ID if found, otherwise null is returned
      */
@@ -70,15 +143,17 @@ public class Data {
 
     /**
      * Add or update a new patient to the hashmap of this database.
+     *
      * @param patient the patient to be added/updated
      */
-    public void setPatient(Patient patient) {
+    public void addPatient(Patient patient) {
         patients.put(patient.getID(), patient);
     }
 
     /**
      * This loads a patient to the currentPatient attribute.
      * Take note that currentPatient can still be null if there is no patients with this id in the hashmap.
+     *
      * @param id unique identifier of the patient to be loaded
      */
     public void loadCurrentPatient(String id) {
@@ -87,17 +162,11 @@ public class Data {
 
     /**
      * This removes a patient from the hashmap of this database.
+     *
      * @param id unique identifier of the patient to be loaded
      */
     public void deletePatient(String id) {
         patients.remove(id);
-    }
-
-    /**
-     * This saves the patient in currentPatient attribute back to the hashmap.
-     */
-    public void saveCurrentPatient() {
-        setPatient(currentPatient);
     }
 
     /**

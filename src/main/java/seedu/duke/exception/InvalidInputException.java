@@ -11,7 +11,8 @@ public class InvalidInputException extends BaseException {
         PATIENT_EXISTED(Constants.INVALID_INPUT_PATIENT_EXISTED),
         NO_PATIENT_LOADED(Constants.INVALID_INPUT_NO_PATIENT_LOADED),
         EMPTY_DESCRIPTION(Constants.INVALID_INPUT_EMPTY_DESCRIPTION),
-        INVALID_DATE(Constants.INVALID_INPUT_INVALID_DATE);
+        INVALID_DATE(Constants.INVALID_INPUT_INVALID_DATE),
+        INVALID_PATIENT(Constants.INVALID_INPUT_INVALID_PATIENT);
 
         public final String message;
 

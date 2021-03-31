@@ -58,6 +58,7 @@ public class Constants {
     public static final String INVALID_INPUT_NO_PATIENT_LOADED = "No patient loaded!";
     public static final String INVALID_INPUT_EMPTY_DESCRIPTION = "Please provide details about the patient's visit!";
     public static final String INVALID_INPUT_INVALID_DATE = "Please provide a valid date (format: dd/MM/yyyy).";
+    public static final String INVALID_INPUT_INVALID_PATIENT = "Patient\'s data is not found.";
 
     public static final String STORAGE = "Something wrong happen when trying to save/load data";
     public static final String STORAGE_FILE_CREATION_FAIL = "Failed to create a save file.";

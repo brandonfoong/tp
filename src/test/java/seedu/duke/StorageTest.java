@@ -23,10 +23,10 @@ public class StorageTest {
         LocalDate date = LocalDate.now();
         patient.addRecord(date, "head pain, dizziness", "heat stroke", "cooling packs, medicine");
         patient.addRecord(date.plus(1, ChronoUnit.DAYS), "fainting", "severe heat stroke", "referral to hospital");
-        data.setPatient(patient);
+        data.addPatient(patient);
         patient = new Patient("S7654321B");
         patient.addRecord(date, "abdominal pain", "mild UTI", "antibiotics, referral to hospital");
-        data.setPatient(patient);
+        data.addPatient(patient);
 
         try {
             data.saveFile();

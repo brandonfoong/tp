@@ -36,7 +36,7 @@ public class AddCommand extends Command {
 
         assert checkID(id) : "validID should be true";
         Patient patient = new Patient(id);
-        data.setPatient(patient);
+        data.addPatient(patient);
         data.saveFile();
 
         ui.printMessage("Patient " + id + " has been added!");

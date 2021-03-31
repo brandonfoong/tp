@@ -17,7 +17,7 @@ public class DeleteCommandTest {
     public void executeDeleteCommand_patientDeleted() {
         Data data = new Data();
         Patient patient = new Patient("S1234567D");
-        data.setPatient(patient);
+        data.addPatient(patient);
         data.loadCurrentPatient(patient.getID());
         HashMap<String, String> arguments = new HashMap<>();
         arguments.put("command", "delete");
@@ -43,7 +43,7 @@ public class DeleteCommandTest {
     public void executeDeleteCommand_recordDeleted() {
         Data data = new Data();
         Patient patient = new Patient("S1234567D");
-        data.setPatient(patient);
+        data.addPatient(patient);
         data.loadCurrentPatient(patient.getID());
         String date = "29/03/2021";
         LocalDate parseDate = LocalDate.parse(date, DateTimeFormatter.ofPattern(Constants.DATE_PATTERN));
@@ -118,7 +118,7 @@ public class DeleteCommandTest {
     public void executeDeleteCommand_recordDoesNotExist() {
         Data data = new Data();
         Patient patient = new Patient("S1234567D");
-        data.setPatient(patient);
+        data.addPatient(patient);
         data.loadCurrentPatient(patient.getID());
         HashMap<String, String> arguments = new HashMap<>();
         arguments.put("command", "delete");

@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.Data;
 import seedu.duke.Ui;
+import seedu.duke.exception.InvalidInputException;
 
 import java.util.HashMap;
 
@@ -18,15 +19,17 @@ public class LoadCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InvalidInputException {
         // TODO: Replace printed string with actual details of the patient.
         String id = arguments.get("payload");
         id = id.toUpperCase();
-        data.loadCurrentPatient(id);
-        if (data.currentPatient != null) {
-            ui.printMessage("Patient " + data.currentPatient.getID() + "\'s data has been found and loaded.");
-        } else {
-            ui.printMessage("Patient\'s data is not found.");
-        }
+        data.loadPatient(id);
+        ui.printMessage("Patient " + data.getCurrentPatientId() + "\'s data has been found and loaded.");
+//        data.loadCurrentPatient(id);
+//        if (data.currentPatient != null) {
+//            ui.printMessage("Patient " + data.currentPatient.getID() + "\'s data has been found and loaded.");
+//        } else {
+//            ui.printMessage("Patient\'s data is not found.");
+//        }
     }
 }

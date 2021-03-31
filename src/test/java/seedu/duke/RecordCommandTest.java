@@ -17,7 +17,7 @@ class RecordCommandTest {
     public void executeRecordCommand_noPatientLoaded_exceptionThrown() {
         Data data = new Data();
         Patient patient = new Patient("S1234567D");
-        data.setPatient(patient);
+        data.addPatient(patient);
         HashMap<String, String> arguments = new HashMap<>();
         arguments.put("command", "record");
         arguments.put("payload", "2021-03-31");
@@ -34,7 +34,7 @@ class RecordCommandTest {
     public void executeRecordCommand_patientLoaded_recordAdded() {
         Data data = new Data();
         Patient patient = new Patient("S1234567D");
-        data.setPatient(patient);
+        data.addPatient(patient);
         data.loadCurrentPatient(patient.getID());
         HashMap<String, String> arguments = new HashMap<>();
         arguments.put("command", "record");

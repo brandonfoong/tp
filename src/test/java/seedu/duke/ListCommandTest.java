@@ -36,7 +36,7 @@ public class ListCommandTest {
         arguments.put("command", "list");
 
         Patient patient = new Patient("S1234567D");
-        data.setPatient(patient);
+        data.addPatient(patient);
         ListCommand listCommand = new ListCommand(ui, data, arguments);
 
         final PrintStream originalOut = System.out;

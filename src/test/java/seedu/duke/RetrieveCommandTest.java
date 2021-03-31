@@ -17,7 +17,7 @@ class RetrieveCommandTest {
     public void executeRetrieveCommand_noPatientLoaded_exceptionThrown() {
         Data data = new Data();
         Patient patient = new Patient("S1234567D");
-        data.setPatient(patient);
+        data.addPatient(patient);
         HashMap<String, String> arguments = new HashMap<>();
         arguments.put("command", "record");
         arguments.put("payload", "31/03/2021");
@@ -34,7 +34,7 @@ class RetrieveCommandTest {
     public void executeRetrieveCommand_patientLoadedAndRecordsAdded_printsRecords() {
         Data data = new Data();
         Patient patient = new Patient("S1234567D");
-        data.setPatient(patient);
+        data.addPatient(patient);
         data.loadCurrentPatient(patient.getID());
         HashMap<String, String> arguments = new HashMap<>();
         arguments.put("command", "record");

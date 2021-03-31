@@ -29,10 +29,10 @@ public class RecordCommand extends Command {
     public void execute() throws InvalidInputException, StorageException {
         assert ui != null : "Ui must not be null";
         assert arguments.containsKey("payload") : "Arguments must contain a value for the `payload` key";
-        Patient patient = data.currentPatient;
-        if (patient == null) {
-            throw new InvalidInputException(InvalidInputException.Type.NO_PATIENT_LOADED);
-        }
+//        Patient patient = data.currentPatient;
+//        if (patient == null) {
+//            throw new InvalidInputException(InvalidInputException.Type.NO_PATIENT_LOADED);
+//        }
         String dateString = arguments.get(Constants.PAYLOAD_KEY);
         LocalDate date = null;
         try {
@@ -40,9 +40,9 @@ public class RecordCommand extends Command {
         } catch (DateTimeParseException dateTimeParseException) {
             throw new InvalidInputException(InvalidInputException.Type.INVALID_DATE);
         }
-        addRecord(patient, date);
+        addRecord(date);
         data.saveFile();
-        printNewRecord(patient);
+//        printNewRecord(patient);
     }
 
     private LocalDate parseDate(String dateString) throws DateTimeParseException {
@@ -52,7 +52,7 @@ public class RecordCommand extends Command {
         return LocalDate.now();
     }
 
-    private void addRecord(Patient patient, LocalDate date) {
+    private void addRecord(LocalDate date) throws InvalidInputException {
         String symptom = null;
         String diagnosis = null;
         String prescription = null;
@@ -65,7 +65,8 @@ public class RecordCommand extends Command {
         if (arguments.containsKey(Constants.PRESCRIPTION_KEY)) {
             prescription = arguments.get(Constants.PRESCRIPTION_KEY);
         }
-        patient.addRecord(date, symptom, diagnosis, prescription);
+        data.addRecord(date, symptom, diagnosis, prescription);
+//        patient.addRecord(date, symptom, diagnosis, prescription);
     }
 
     private void printNewRecord(Patient patient) {
