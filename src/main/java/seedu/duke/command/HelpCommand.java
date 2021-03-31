@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.Constants;
+import seedu.duke.Commons;
 import seedu.duke.Data;
 import seedu.duke.Ui;
 
@@ -21,48 +21,48 @@ public class HelpCommand extends Command {
     public void execute() {
         String[] commands = arguments.get("payload").toLowerCase().split(" ");
         if (commands[0].isEmpty()) {
-            ui.printMessage(Constants.ADD_INFO_MESSAGE + System.lineSeparator()
-                    + Constants.DELETE_INFO_MESSAGE + System.lineSeparator()
-                    + Constants.LIST_INFO_MESSAGE + System.lineSeparator()
-                    + Constants.LOAD_INFO_MESSAGE + System.lineSeparator()
-                    + Constants.RECORD_CONSULTATION_INFO_MESSAGE + System.lineSeparator()
-                    + Constants.RETRIEVE_INFO_MESSAGE + System.lineSeparator()
-                    + Constants.CURRENT_INFO_MESSAGE + System.lineSeparator()
-                    + Constants.HELP_INFO_MESSAGE + System.lineSeparator()
-                    + Constants.EXIT_INFO_MESSAGE
+            ui.printMessage(Commons.ADD_INFO_MESSAGE + System.lineSeparator()
+                    + Commons.DELETE_INFO_MESSAGE + System.lineSeparator()
+                    + Commons.LIST_INFO_MESSAGE + System.lineSeparator()
+                    + Commons.LOAD_INFO_MESSAGE + System.lineSeparator()
+                    + Commons.RECORD_CONSULTATION_INFO_MESSAGE + System.lineSeparator()
+                    + Commons.RETRIEVE_INFO_MESSAGE + System.lineSeparator()
+                    + Commons.CURRENT_INFO_MESSAGE + System.lineSeparator()
+                    + Commons.HELP_INFO_MESSAGE + System.lineSeparator()
+                    + Commons.EXIT_INFO_MESSAGE
             );
         } else {
             for (String command : commands) {
                 switch (command) {
                 case "add":
-                    ui.printMessage(Constants.ADD_INFO_MESSAGE);
+                    ui.printMessage(Commons.ADD_INFO_MESSAGE);
                     break;
                 case "delete":
-                    ui.printMessage(Constants.DELETE_INFO_MESSAGE);
+                    ui.printMessage(Commons.DELETE_INFO_MESSAGE);
                     break;
                 case "list":
-                    ui.printMessage(Constants.LIST_INFO_MESSAGE);
+                    ui.printMessage(Commons.LIST_INFO_MESSAGE);
                     break;
                 case "load":
-                    ui.printMessage(Constants.LOAD_INFO_MESSAGE);
+                    ui.printMessage(Commons.LOAD_INFO_MESSAGE);
                     break;
                 case "record":
-                    ui.printMessage(Constants.RECORD_CONSULTATION_INFO_MESSAGE);
+                    ui.printMessage(Commons.RECORD_CONSULTATION_INFO_MESSAGE);
                     break;
                 case "retrieve":
-                    ui.printMessage(Constants.RETRIEVE_INFO_MESSAGE);
+                    ui.printMessage(Commons.RETRIEVE_INFO_MESSAGE);
                     break;
                 case "current":
-                    ui.printMessage(Constants.CURRENT_INFO_MESSAGE);
+                    ui.printMessage(Commons.CURRENT_INFO_MESSAGE);
                     break;
                 case "help":
-                    ui.printMessage(Constants.HELP_INFO_MESSAGE);
+                    ui.printMessage(Commons.HELP_INFO_MESSAGE);
                     break;
                 case "exit":
-                    ui.printMessage(Constants.EXIT_INFO_MESSAGE);
+                    ui.printMessage(Commons.EXIT_INFO_MESSAGE);
                     break;
                 default:
-                    ui.printMessage(String.format(Constants.INVALID_COMMAND_MESSAGE, command) + System.lineSeparator());
+                    ui.printMessage(String.format(Commons.INVALID_COMMAND_MESSAGE, command) + System.lineSeparator());
                 }
             }
         }

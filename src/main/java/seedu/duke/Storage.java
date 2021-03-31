@@ -29,7 +29,7 @@ public class Storage {
      * This is the constructor without a parameter. Default path will be used.
      */
     public Storage() {
-        this(Constants.STORAGE_DEFAULT_PATH);
+        this(Commons.STORAGE_DEFAULT_PATH);
     }
 
     /**
@@ -64,7 +64,7 @@ public class Storage {
                 Patient patient = (Patient)m.getValue();
                 String records = convertRecordToString(patient);
 
-                message.append(id + Constants.ID_DELIMITER + records + "\n");
+                message.append(id + Commons.ID_DELIMITER + records + "\n");
             }
             fileWriter.write(message.toString());
             fileWriter.close();
@@ -85,11 +85,11 @@ public class Storage {
         StringBuilder stringBuilder = new StringBuilder();
         TreeMap<LocalDate, Record> records = patient.getRecords();
         for (Map.Entry<LocalDate, Record> record : records.entrySet()) {
-            String localDate = record.getKey().format(DateTimeFormatter.ofPattern(Constants.DATE_PATTERN));
+            String localDate = record.getKey().format(DateTimeFormatter.ofPattern(Commons.DATE_PATTERN));
             Record patientRecord = record.getValue();
 
-            stringBuilder.append(localDate + Constants.DATE_DELIMITER + patientRecord.printFileConsultationDetail());
-            stringBuilder.append(Constants.RECORDS_DELIMITER);
+            stringBuilder.append(localDate + Commons.DATE_DELIMITER + patientRecord.printFileConsultationDetail());
+            stringBuilder.append(Commons.RECORDS_DELIMITER);
         }
 
         return (stringBuilder.toString());
@@ -109,7 +109,7 @@ public class Storage {
             // If inFile does not exist, FNF Exception will be triggered and captured below
             Scanner scanner = new Scanner(inFile);
             while (scanner.hasNextLine()) {
-                String[] retrievedPatientsData = scanner.nextLine().split(Constants.ID_DELIMITER);
+                String[] retrievedPatientsData = scanner.nextLine().split(Commons.ID_DELIMITER);
                 String id = retrievedPatientsData[0];
                 Patient patient;
                 if (retrievedPatientsData.length > 1) {
@@ -136,28 +136,28 @@ public class Storage {
     public TreeMap<LocalDate, Record> convertStringToRecords(String recordString) {
         TreeMap<LocalDate, Record> records = new TreeMap<>();
 
-        String[] recordsPresent = recordString.split(Constants.RECORDS_DELIMITER);
+        String[] recordsPresent = recordString.split(Commons.RECORDS_DELIMITER);
 
         for (String r : recordsPresent) {
-            String[] splitString = r.split(Constants.DATE_DELIMITER);
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(Constants.DATE_PATTERN);
+            String[] splitString = r.split(Commons.DATE_DELIMITER);
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(Commons.DATE_PATTERN);
             final LocalDate dt = LocalDate.parse(splitString[0], dateTimeFormatter);
 
             ArrayList<String> prescriptions = new ArrayList<>();
             ArrayList<String> symptoms = new ArrayList<>();
             ArrayList<String> diagnoses = new ArrayList<>();
 
-            String[] symptomSplitString = splitString[1].split(Constants.SYMPTOM_DELIMITER);
+            String[] symptomSplitString = splitString[1].split(Commons.SYMPTOM_DELIMITER);
             if (!symptomSplitString[0].isEmpty()) {
                 symptoms = splitStringIntoArrayList(symptomSplitString[0]);
             }
 
-            String[] diagnosisSplitString = symptomSplitString[1].split(Constants.DIAGNOSIS_DELIMITER);
+            String[] diagnosisSplitString = symptomSplitString[1].split(Commons.DIAGNOSIS_DELIMITER);
             if (!diagnosisSplitString[0].isEmpty()) {
                 diagnoses = splitStringIntoArrayList(diagnosisSplitString[0]);
             }
 
-            String[] prescriptionSplitString = diagnosisSplitString[1].split(Constants.PRESCRIPTION_DELIMITER);
+            String[] prescriptionSplitString = diagnosisSplitString[1].split(Commons.PRESCRIPTION_DELIMITER);
             if (prescriptionSplitString.length > 0) {
                 prescriptions = splitStringIntoArrayList(prescriptionSplitString[0]);
             }
@@ -171,7 +171,7 @@ public class Storage {
     }
 
     private ArrayList<String> splitStringIntoArrayList(String stringToSplit) {
-        String[] stringArray = stringToSplit.split(Constants.DETAILS_DELIMITER);
+        String[] stringArray = stringToSplit.split(Commons.DETAILS_DELIMITER);
         ArrayList<String> arrayList = new ArrayList<>();
         for (String string : stringArray) {
             arrayList.add(string);

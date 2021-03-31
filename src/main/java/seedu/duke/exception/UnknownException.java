@@ -1,6 +1,6 @@
 package seedu.duke.exception;
 
-import seedu.duke.Constants;
+import seedu.duke.Commons;
 
 @SuppressWarnings("serial")
 public class UnknownException extends BaseException {
@@ -9,6 +9,6 @@ public class UnknownException extends BaseException {
      * @param cause cause of this subclass of exception being thrown
      */
     public UnknownException(Throwable cause) {
-        super(Constants.UNKNOWN, "", cause);
+        super(Commons.UNKNOWN, "", cause);
     }
 }

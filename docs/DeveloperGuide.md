@@ -169,7 +169,7 @@ API: `BaseException.java` and its subclasses
 
 ### Commons
 
-Constants used by multiple classes are stored in the `seedu.duke.Constants` class.
+Constants used by multiple classes are stored in the `seedu.duke.Commons` class.
 
 ## Implementation
 

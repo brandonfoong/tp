@@ -42,8 +42,8 @@ public class Ui {
      * Prints a welcome message.
      */
     public void printWelcome() {
-        printMessage(Constants.WELCOME_MESSAGE);
-        printMessage(Constants.INPUT_PROMPT);
+        printMessage(Commons.WELCOME_MESSAGE);
+        printMessage(Commons.INPUT_PROMPT);
     }
 
     /**
@@ -58,6 +58,6 @@ public class Ui {
      * This prints a long breaking line to separate user input and command outputs.
      */
     public void printLine() {
-        printMessage(Constants.LONG_LINE);
+        printMessage(Commons.LONG_LINE);
     }
 }

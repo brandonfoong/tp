@@ -46,7 +46,7 @@ public class DeleteCommandTest {
         data.addPatient(patient);
         data.loadCurrentPatient(patient.getID());
         String date = "29/03/2021";
-        LocalDate parseDate = LocalDate.parse(date, DateTimeFormatter.ofPattern(Constants.DATE_PATTERN));
+        LocalDate parseDate = LocalDate.parse(date, DateTimeFormatter.ofPattern(Commons.DATE_PATTERN));
         patient.addRecord(parseDate, "coughing", "","");
         HashMap<String, String> arguments = new HashMap<>();
         arguments.put("command", "delete");

@@ -1,6 +1,10 @@
 package seedu.duke;
 
-public class Constants {
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+public class Commons {
     public static final String ADD_INFO_MESSAGE = "Add a patient to the list\n"
             + "Command prefix: add\n"
             + "Argument(s): IC number\n"
@@ -49,7 +53,7 @@ public class Constants {
 
     // Exception messages
     public static final String EXCEPTION_INDENT = "\t";
-    
+
     public static final String INVALID_INPUT = "Input command and/or arguments are invalid";
     public static final String INVALID_INPUT_EMPTY_STRING = "Please enter something for me to process!";
     public static final String INVALID_INPUT_UNKNOWN_COMMAND = "Invalid command is provided!";
@@ -59,6 +63,10 @@ public class Constants {
     public static final String INVALID_INPUT_EMPTY_DESCRIPTION = "Please provide details about the patient's visit!";
     public static final String INVALID_INPUT_INVALID_DATE = "Please provide a valid date (format: dd/MM/yyyy).";
     public static final String INVALID_INPUT_INVALID_PATIENT = "Patient\'s data is not found.";
+    public static final String INVALID_INPUT_REMOVE_LOADED_PATIENT = "Can't remove the currently loaded patient!";
+    public static final String INVALID_INPUT_UNSPECIFIED_DELETE = "Please indicate whether to delete patient or record"
+            + "using /p or /r respectively!";
+    public static final String INVALID_INPUT_NO_RECORD_FOUND = "No records found for the specified date.";
 
     public static final String STORAGE = "Something wrong happen when trying to save/load data";
     public static final String STORAGE_FILE_CREATION_FAIL = "Failed to create a save file.";
@@ -107,4 +115,18 @@ public class Constants {
     public static final String DETAILS_DELIMITER = "!D!";
 
     public static final String STORAGE_DEFAULT_PATH = "./pm.save";
+
+    /**
+     * Parses a string following the dd/MM/yyyy format into a LocalDate object
+     * @param dateString date formatted as dd/MM/yyyy
+     * @return the parsed LocalDate object
+     * @throws DateTimeParseException if the date is invalid, or does not follow the required format
+     */
+    public static LocalDate parseDate(String dateString) throws DateTimeParseException {
+        if (!dateString.isEmpty()) {
+            return LocalDate.parse(dateString, DateTimeFormatter.ofPattern(Commons.DATE_PATTERN));
+        }
+        return LocalDate.now();
+    }
+
 }

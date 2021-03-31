@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.Constants;
+import seedu.duke.Commons;
 import seedu.duke.Data;
 import seedu.duke.Ui;
 import seedu.duke.exception.InvalidInputException;
@@ -29,14 +29,10 @@ public class RecordCommand extends Command {
     public void execute() throws InvalidInputException, StorageException {
         assert ui != null : "Ui must not be null";
         assert arguments.containsKey("payload") : "Arguments must contain a value for the `payload` key";
-//        Patient patient = data.currentPatient;
-//        if (patient == null) {
-//            throw new InvalidInputException(InvalidInputException.Type.NO_PATIENT_LOADED);
-//        }
-        String dateString = arguments.get(Constants.PAYLOAD_KEY);
+        String dateString = arguments.get(Commons.PAYLOAD_KEY);
         LocalDate date = null;
         try {
-            date = parseDate(dateString);
+            date = Commons.parseDate(dateString);
         } catch (DateTimeParseException dateTimeParseException) {
             throw new InvalidInputException(InvalidInputException.Type.INVALID_DATE);
         }
@@ -45,25 +41,18 @@ public class RecordCommand extends Command {
 //        printNewRecord(patient);
     }
 
-    private LocalDate parseDate(String dateString) throws DateTimeParseException {
-        if (!dateString.isEmpty()) {
-            return LocalDate.parse(dateString, DateTimeFormatter.ofPattern(Constants.DATE_PATTERN));
-        }
-        return LocalDate.now();
-    }
-
     private void addRecord(LocalDate date) throws InvalidInputException {
         String symptom = null;
         String diagnosis = null;
         String prescription = null;
-        if (arguments.containsKey(Constants.SYMPTOM_KEY)) {
-            symptom = arguments.get(Constants.SYMPTOM_KEY);
+        if (arguments.containsKey(Commons.SYMPTOM_KEY)) {
+            symptom = arguments.get(Commons.SYMPTOM_KEY);
         }
-        if (arguments.containsKey(Constants.DIAGNOSIS_KEY)) {
-            diagnosis = arguments.get(Constants.DIAGNOSIS_KEY);
+        if (arguments.containsKey(Commons.DIAGNOSIS_KEY)) {
+            diagnosis = arguments.get(Commons.DIAGNOSIS_KEY);
         }
-        if (arguments.containsKey(Constants.PRESCRIPTION_KEY)) {
-            prescription = arguments.get(Constants.PRESCRIPTION_KEY);
+        if (arguments.containsKey(Commons.PRESCRIPTION_KEY)) {
+            prescription = arguments.get(Commons.PRESCRIPTION_KEY);
         }
         data.addRecord(date, symptom, diagnosis, prescription);
 //        patient.addRecord(date, symptom, diagnosis, prescription);

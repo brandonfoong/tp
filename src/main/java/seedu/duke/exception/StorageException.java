@@ -1,13 +1,13 @@
 package seedu.duke.exception;
 
-import seedu.duke.Constants;
+import seedu.duke.Commons;
 
 @SuppressWarnings("serial")
 public class StorageException extends BaseException {
     public enum Type {
-        FILE_CREATION_FAIL(Constants.STORAGE_FILE_CREATION_FAIL),
-        FILE_WRITE_FAIL(Constants.STORAGE_FILE_WRITE_FAIL),
-        FILE_NOT_FOUND(Constants.STORAGE_FILE_NOT_FOUND);
+        FILE_CREATION_FAIL(Commons.STORAGE_FILE_CREATION_FAIL),
+        FILE_WRITE_FAIL(Commons.STORAGE_FILE_WRITE_FAIL),
+        FILE_NOT_FOUND(Commons.STORAGE_FILE_NOT_FOUND);
         
         public final String message;
 
@@ -31,6 +31,6 @@ public class StorageException extends BaseException {
      * @param cause cause of this subclass of exception being thrown
      */
     public StorageException(Type type, Throwable cause) {
-        super(Constants.STORAGE, type.message, cause);
+        super(Commons.STORAGE, type.message, cause);
     }
 }

@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.Constants;
+import seedu.duke.Commons;
 import seedu.duke.Data;
 import seedu.duke.Ui;
 import seedu.duke.model.Patient;
@@ -33,7 +33,7 @@ public class ListCommand extends Command {
 
         if (patientCount == 0) {
             // There is no patient in the list. We just inform the user about it.
-            ui.printMessage(Constants.EMPTY_LIST_MESSAGE);
+            ui.printMessage(Commons.EMPTY_LIST_MESSAGE);
         } else {
             assert list != "" : "List should not be empty";
             ui.printMessage(list);

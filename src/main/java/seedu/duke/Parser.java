@@ -86,7 +86,7 @@ public class Parser {
         // Initialize a respective class from the command (by capitalize first character)
         String className = tokens[0] + "Command";
         className = className.substring(0, 1).toUpperCase() + className.substring(1);
-        className = Constants.COMMAND_CLASS_PREFIX + className;
+        className = Commons.COMMAND_CLASS_PREFIX + className;
         try {
             Class<?> cls = Class.forName(className);
             Constructor<?> constructor = cls.getDeclaredConstructor(Ui.class, Data.class, HashMap.class);

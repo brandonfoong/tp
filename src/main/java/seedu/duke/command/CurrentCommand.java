@@ -21,9 +21,5 @@ public class CurrentCommand extends Command {
     @Override
     public void execute() throws InvalidInputException {
         ui.printMessage("The currently loaded patient's ID is " + data.getCurrentPatientId() + ".");
-//        if (data.currentPatient != null) {
-//        } else {
-//            ui.printMessage("There is no patient being loaded now.");
-//        }
     }
 }

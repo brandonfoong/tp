@@ -1,16 +1,10 @@
 package seedu.duke.command;
 
-import seedu.duke.Constants;
 import seedu.duke.Data;
 import seedu.duke.Ui;
 import seedu.duke.exception.InvalidInputException;
-import seedu.duke.model.Record;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class RetrieveCommand extends Command {
     /**
@@ -27,10 +21,6 @@ public class RetrieveCommand extends Command {
     @Override
     public void execute() throws InvalidInputException {
         assert ui != null : "Ui must not be null";
-//        Patient patient = data.currentPatient;
-//        if (patient == null) {
-//            throw new InvalidInputException(InvalidInputException.Type.NO_PATIENT_LOADED);
-//        }
         String recordString = data.getRecords();
         ui.printMessage("Here are " + data.getCurrentPatientId() + "'s records:");
         ui.printMessage(recordString);

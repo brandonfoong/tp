@@ -40,7 +40,7 @@ public class ParserTest {
             defaultParser.parse(fullCommand);
         });
 
-        assertEquals(Constants.INVALID_INPUT_EMPTY_STRING, e.getMessage());
+        assertEquals(Commons.INVALID_INPUT_EMPTY_STRING, e.getMessage());
     }
 
     @Test
@@ -50,7 +50,7 @@ public class ParserTest {
             defaultParser.parse(fullCommand);
         });
 
-        assertEquals(Constants.INVALID_INPUT_UNKNOWN_COMMAND, e.getMessage());
+        assertEquals(Commons.INVALID_INPUT_UNKNOWN_COMMAND, e.getMessage());
     }
 
     /**

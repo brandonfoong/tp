@@ -25,7 +25,7 @@ public class ListCommandTest {
         listCommand.execute();
         final String standardOutput = myOut.toString();
 
-        assertEquals(Constants.EMPTY_LIST_MESSAGE + System.lineSeparator(), standardOutput);
+        assertEquals(Commons.EMPTY_LIST_MESSAGE + System.lineSeparator(), standardOutput);
     }
 
     @Test

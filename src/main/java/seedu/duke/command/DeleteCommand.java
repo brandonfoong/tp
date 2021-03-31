@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.Constants;
+import seedu.duke.Commons;
 import seedu.duke.Data;
 import seedu.duke.Ui;
 import seedu.duke.exception.InvalidInputException;
@@ -8,7 +8,6 @@ import seedu.duke.exception.StorageException;
 import seedu.duke.model.Patient;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 
@@ -28,21 +27,22 @@ public class DeleteCommand extends Command {
     @Override
     public void execute() throws InvalidInputException, StorageException {
 
-        if (arguments.containsKey(Constants.PATIENT_KEY)) {
-            String id = arguments.get(Constants.PATIENT_KEY);
+        if (arguments.containsKey(Commons.PATIENT_KEY)) {
+            String id = arguments.get(Commons.PATIENT_KEY);
             id = id.toUpperCase();
-            deletePatient(id);
+            data.deletePatient(id);
             data.saveFile();
-        }  else if (arguments.containsKey(Constants.RECORD_KEY)) {
-            Patient patient = data.currentPatient;
-            if (patient == null) {
-                throw new InvalidInputException(InvalidInputException.Type.NO_PATIENT_LOADED);
-            }
-            String date = arguments.get(Constants.RECORD_KEY);
-            deleteRecord(patient, date);
+        }  else if (arguments.containsKey(Commons.RECORD_KEY)) {
+            String date = arguments.get(Commons.RECORD_KEY);
+            data.deleteRecord(date);
+//            Patient patient = data.currentPatient;
+//            if (patient == null) {
+//                throw new InvalidInputException(InvalidInputException.Type.NO_PATIENT_LOADED);
+//            }
+//            deleteRecord(patient, date);
             data.saveFile();
         } else {
-            ui.printMessage("Please indicate whether to delete patient or record using /p or /r respectively!");
+            ui.printMessage(Commons.INVALID_INPUT_UNSPECIFIED_DELETE);
         }
     }
 
@@ -55,7 +55,7 @@ public class DeleteCommand extends Command {
             ui.printMessage("Patient does not exist!");
             return;
         }
-        data.deletePatient(id);
+//        data.deletePatient(id);
         ui.printMessage("Patient " + id + " has been deleted!");
     }
 
@@ -68,7 +68,7 @@ public class DeleteCommand extends Command {
     private void deleteRecord(Patient patient, String dateString) throws InvalidInputException {
         LocalDate date = null;
         try {
-            date = parseDate(dateString);
+            date = Commons.parseDate(dateString);
         } catch (DateTimeParseException dateTimeParseException) {
             throw new InvalidInputException(InvalidInputException.Type.INVALID_DATE);
         }
@@ -81,10 +81,5 @@ public class DeleteCommand extends Command {
 
     }
 
-    private LocalDate parseDate(String dateString) throws DateTimeParseException {
-        if (!dateString.isEmpty()) {
-            return LocalDate.parse(dateString, DateTimeFormatter.ofPattern(Constants.DATE_PATTERN));
-        }
-        return LocalDate.now();
-    }
+
 }

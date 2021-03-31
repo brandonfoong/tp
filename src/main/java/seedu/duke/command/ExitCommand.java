@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.Constants;
+import seedu.duke.Commons;
 import seedu.duke.Data;
 import seedu.duke.Ui;
 
@@ -23,6 +23,6 @@ public class ExitCommand extends Command {
 
     @Override
     public void execute() {
-        ui.printMessage(Constants.EXIT_MESSAGE);
+        ui.printMessage(Commons.EXIT_MESSAGE);
     }
 }

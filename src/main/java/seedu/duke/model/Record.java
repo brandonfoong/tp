@@ -1,6 +1,6 @@
 package seedu.duke.model;
 
-import seedu.duke.Constants;
+import seedu.duke.Commons;
 
 import java.util.ArrayList;
 
@@ -60,17 +60,17 @@ public class Record {
     public String printFileConsultationDetail() {
         String consultationDetail = "";
         for (String symptom : symptoms) {
-            consultationDetail += symptom + Constants.DETAILS_DELIMITER;
+            consultationDetail += symptom + Commons.DETAILS_DELIMITER;
         }
-        consultationDetail += Constants.SYMPTOM_DELIMITER;
+        consultationDetail += Commons.SYMPTOM_DELIMITER;
         for (String diagnosis : diagnoses) {
-            consultationDetail += diagnosis + Constants.DETAILS_DELIMITER;
+            consultationDetail += diagnosis + Commons.DETAILS_DELIMITER;
         }
-        consultationDetail += Constants.DIAGNOSIS_DELIMITER;
+        consultationDetail += Commons.DIAGNOSIS_DELIMITER;
         for (String prescription : prescriptions) {
-            consultationDetail += prescription + Constants.DETAILS_DELIMITER;
+            consultationDetail += prescription + Commons.DETAILS_DELIMITER;
         }
-        consultationDetail += Constants.PRESCRIPTION_DELIMITER;
+        consultationDetail += Commons.PRESCRIPTION_DELIMITER;
         return consultationDetail;
     }
 

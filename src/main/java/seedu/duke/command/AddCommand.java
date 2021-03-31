@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.Constants;
+import seedu.duke.Commons;
 import seedu.duke.Data;
 import seedu.duke.Ui;
 import seedu.duke.exception.InvalidInputException;
@@ -50,31 +50,31 @@ public class AddCommand extends Command {
     private boolean checkID(String id) {
         int stringLength = id.length();
         int checksum = 0;
-        char firstLetter = id.charAt(Constants.INDEX_OF_FIRST_CHARACTER);
+        char firstLetter = id.charAt(Commons.INDEX_OF_FIRST_CHARACTER);
         char[] st = {'J', 'Z', 'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'};
         char[] fg = {'X', 'W', 'U', 'T', 'R', 'Q', 'P', 'N', 'M', 'L', 'K'};
 
         // Checks if ID has 9 characters
-        if (stringLength != Constants.ID_NUMBER_OF_CHARACTERS) {
+        if (stringLength != Commons.ID_NUMBER_OF_CHARACTERS) {
             return false;
         }
         // Checks if ID is valid
         for (int i = 0; i < stringLength; i++) {
             char c = id.charAt(i);
-            if (i == Constants.INDEX_OF_FIRST_CHARACTER) {
+            if (i == Commons.INDEX_OF_FIRST_CHARACTER) {
                 // Checks if first index of ID is S,T,F or G
                 if (c != 'S' && c != 'T' && c != 'F' && c != 'G') {
                     return false;
                 }
-            } else if (i == Constants.INDEX_OF_LAST_CHARACTER) {
+            } else if (i == Commons.INDEX_OF_LAST_CHARACTER) {
                 // Checks if last index of ID is a letter
                 if (!Character.isLetter(c)) {
                     return false;
                 }
                 if (firstLetter == 'T' || firstLetter == 'G') {
-                    checksum += Constants.CHECKSUM_DIGIT;
+                    checksum += Commons.CHECKSUM_DIGIT;
                 }
-                checksum = checksum % Constants.CHECKSUM_MOD;
+                checksum = checksum % Commons.CHECKSUM_MOD;
                 if (firstLetter == 'S' || firstLetter == 'T') {
                     if (c != st[checksum]) {
                         return false;
@@ -91,23 +91,23 @@ public class AddCommand extends Command {
                 }
                 // Calculates the checksum of digits
                 switch (i) {
-                case Constants.FIRST_DIGIT:
-                case Constants.LAST_DIGIT:
+                case Commons.FIRST_DIGIT:
+                case Commons.LAST_DIGIT:
                     checksum += Integer.parseInt(String.valueOf(c)) * 2;
                     break;
-                case Constants.SECOND_DIGIT:
+                case Commons.SECOND_DIGIT:
                     checksum += Integer.parseInt(String.valueOf(c)) * 7;
                     break;
-                case Constants.THIRD_DIGIT:
+                case Commons.THIRD_DIGIT:
                     checksum += Integer.parseInt(String.valueOf(c)) * 6;
                     break;
-                case Constants.FOURTH_DIGIT:
+                case Commons.FOURTH_DIGIT:
                     checksum += Integer.parseInt(String.valueOf(c)) * 5;
                     break;
-                case Constants.FIFTH_DIGIT:
+                case Commons.FIFTH_DIGIT:
                     checksum += Integer.parseInt(String.valueOf(c)) * 4;
                     break;
-                case Constants.SIXTH_DIGIT:
+                case Commons.SIXTH_DIGIT:
                     checksum += Integer.parseInt(String.valueOf(c)) * 3;
                     break;
                 default:

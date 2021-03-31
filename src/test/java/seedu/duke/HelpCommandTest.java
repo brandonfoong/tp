@@ -29,9 +29,9 @@ public class HelpCommandTest {
             System.out.println("An error occurred while running tests");
         }
 
-        assertEquals(Constants.LIST_INFO_MESSAGE + System.lineSeparator()
-                + Constants.ADD_INFO_MESSAGE + System.lineSeparator()
-                + Constants.EXIT_INFO_MESSAGE  + System.lineSeparator(), bos.toString());
+        assertEquals(Commons.LIST_INFO_MESSAGE + System.lineSeparator()
+                + Commons.ADD_INFO_MESSAGE + System.lineSeparator()
+                + Commons.EXIT_INFO_MESSAGE  + System.lineSeparator(), bos.toString());
         System.setOut(originalOut);
     }
 
@@ -54,9 +54,9 @@ public class HelpCommandTest {
             System.out.println("An error occurred while running tests");
         }
 
-        assertEquals(Constants.LIST_INFO_MESSAGE + System.lineSeparator()
-                + Constants.ADD_INFO_MESSAGE + System.lineSeparator()
-                + String.format(Constants.INVALID_COMMAND_MESSAGE, "bye")
+        assertEquals(Commons.LIST_INFO_MESSAGE + System.lineSeparator()
+                + Commons.ADD_INFO_MESSAGE + System.lineSeparator()
+                + String.format(Commons.INVALID_COMMAND_MESSAGE, "bye")
                 + System.lineSeparator() + System.lineSeparator(), bos.toString());
         System.setOut(originalOut);
     }

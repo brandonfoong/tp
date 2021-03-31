@@ -1,5 +1,7 @@
 package seedu.duke.model;
 
+import seedu.duke.exception.InvalidInputException;
+
 import java.time.LocalDate;
 import java.util.TreeMap;
 
@@ -82,8 +84,9 @@ public class Patient {
 
     /**
      * Checks if a record exists from the patient's record list.
+     *
      * @param date Appointment date of record to check
-     * @return     Boolean for whether the record exists
+     * @return Boolean for whether the record exists
      */
     public boolean recordExist(LocalDate date) {
         if (records.containsKey(date)) {
@@ -95,14 +98,20 @@ public class Patient {
 
     /**
      * Deletes a record from the patient's record list.
+     *
      * @param date Appointment date of record to delete
+     * @throws InvalidInputException if there patient does not have any records on the specified date
      */
-    public void deleteRecord(LocalDate date) {
+    public void deleteRecord(LocalDate date) throws InvalidInputException {
+        if (!records.containsKey(date)) {
+            throw new InvalidInputException(InvalidInputException.Type.NO_RECORD_FOUND);
+        }
         records.remove(date);
     }
 
     /**
      * This returns a printable string with recently added information.
+     *
      * @return a printable string for information about recently added symptoms, diagnosis and prescription
      */
     public String recentlyAdded() {

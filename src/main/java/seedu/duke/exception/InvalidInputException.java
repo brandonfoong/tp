@@ -1,18 +1,20 @@
 package seedu.duke.exception;
 
-import seedu.duke.Constants;
+import seedu.duke.Commons;
 
 @SuppressWarnings("serial")
 public class InvalidInputException extends BaseException {
     public static enum Type {
-        EMPTY_STRING(Constants.INVALID_INPUT_EMPTY_STRING),
-        UNKNOWN_COMMAND(Constants.INVALID_INPUT_UNKNOWN_COMMAND),
-        INVALID_NRIC(Constants.INVALID_INPUT_INVALID_NRIC),
-        PATIENT_EXISTED(Constants.INVALID_INPUT_PATIENT_EXISTED),
-        NO_PATIENT_LOADED(Constants.INVALID_INPUT_NO_PATIENT_LOADED),
-        EMPTY_DESCRIPTION(Constants.INVALID_INPUT_EMPTY_DESCRIPTION),
-        INVALID_DATE(Constants.INVALID_INPUT_INVALID_DATE),
-        INVALID_PATIENT(Constants.INVALID_INPUT_INVALID_PATIENT);
+        EMPTY_STRING(Commons.INVALID_INPUT_EMPTY_STRING),
+        UNKNOWN_COMMAND(Commons.INVALID_INPUT_UNKNOWN_COMMAND),
+        INVALID_NRIC(Commons.INVALID_INPUT_INVALID_NRIC),
+        PATIENT_EXISTED(Commons.INVALID_INPUT_PATIENT_EXISTED),
+        NO_PATIENT_LOADED(Commons.INVALID_INPUT_NO_PATIENT_LOADED),
+        EMPTY_DESCRIPTION(Commons.INVALID_INPUT_EMPTY_DESCRIPTION),
+        INVALID_DATE(Commons.INVALID_INPUT_INVALID_DATE),
+        INVALID_PATIENT(Commons.INVALID_INPUT_INVALID_PATIENT),
+        REMOVE_LOADED_PATIENT(Commons.INVALID_INPUT_REMOVE_LOADED_PATIENT),
+        NO_RECORD_FOUND(Commons.INVALID_INPUT_NO_RECORD_FOUND);
 
         public final String message;
 
@@ -35,6 +37,6 @@ public class InvalidInputException extends BaseException {
      * @param cause cause of this subclass of exception being thrown
      */
     public InvalidInputException(Type type, Throwable cause) {
-        super(Constants.INVALID_INPUT, type.message, cause);
+        super(Commons.INVALID_INPUT, type.message, cause);
     }
 }
