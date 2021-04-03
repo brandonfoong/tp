@@ -25,11 +25,11 @@ public class LoadCommand extends Command {
         id = id.toUpperCase();
         data.loadPatient(id);
         ui.printMessage("Patient " + data.getCurrentPatientId() + "\'s data has been found and loaded.");
-//        data.loadCurrentPatient(id);
-//        if (data.currentPatient != null) {
-//            ui.printMessage("Patient " + data.currentPatient.getID() + "\'s data has been found and loaded.");
-//        } else {
-//            ui.printMessage("Patient\'s data is not found.");
-//        }
+        //        data.loadCurrentPatient(id);
+        //        if (data.currentPatient != null) {
+        //            ui.printMessage("Patient " + data.currentPatient.getID() + "\'s data has been found and loaded.");
+        //        } else {
+        //            ui.printMessage("Patient\'s data is not found.");
+        //        }
     }
 }

@@ -10,6 +10,7 @@ import seedu.duke.exception.InvalidInputException;
 import seedu.duke.exception.UnknownException;
 
 /* Adapted from https://github.com/fsgmhoward/ip/blob/master/src/main/java/duke/Parser.java */
+
 /**
  * This is the parser for parsing the line of command to tokens and construct the command class.
  */
@@ -25,7 +26,8 @@ public class Parser {
 
     /**
      * This is the constructor of the Parser class.
-     * @param ui Ui instance which will be passed to the command instances
+     *
+     * @param ui   Ui instance which will be passed to the command instances
      * @param data Data instance which will be passed to the command instances
      */
     public Parser(Ui ui, Data data) {
@@ -47,13 +49,18 @@ public class Parser {
      * Then, ui, tasks and this argument hashmap will be passed to initialize a command class.
      * The command class is determined by the 1st token of the command string. For example, for a command string 'find',
      * command class 'duke.command.FindCommand' will be initialized.
+     *
      * @param fullCommand The line of command to be parsed
      * @return A Command instance which is ready to be executed
      * @see Command
      */
     public Command parse(String fullCommand) throws InvalidInputException, UnknownException {
-        HashMap<String, String> arguments = new HashMap<>();
         String[] tokens = fullCommand.split("\\s+");
+
+        // If tokenized command returns an empty array, raise an exception
+        if (tokens.length == 0) {
+            throw new InvalidInputException(InvalidInputException.Type.EMPTY_STRING);
+        }
         // If first token (command) is empty, there are empty spaces typed in at the front - so we remove it
         if (tokens[0].isEmpty()) {
             tokens = Arrays.copyOfRange(tokens, 1, tokens.length);
@@ -61,21 +68,24 @@ public class Parser {
         if (tokens.length == 0) {
             throw new InvalidInputException(InvalidInputException.Type.EMPTY_STRING);
         }
+
+        HashMap<String, String> arguments = new HashMap<>();
         arguments.put("command", tokens[0]);
 
         // Default key is "payload"
         String key = "payload";
         ArrayList<String> values = new ArrayList<>();
         for (int i = 1; i < tokens.length; ++i) {
+            String token = tokens[i];
             // Check whether this token is a new key
-            if (tokens[i].charAt(0) == '/') {
+            if (!token.isEmpty() && token.charAt(0) == '/') {
                 // If it is, save current value into the map and start a new k-v pair
                 arguments.put(key, String.join(DELIMITER, values));
-                key = tokens[i].substring(1);
+                key = token.substring(1);
                 values.clear();
             } else {
                 // If not, append this token to the end of the value
-                values.add(tokens[i]);
+                values.add(token);
             }
         }
 

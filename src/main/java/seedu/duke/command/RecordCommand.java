@@ -38,7 +38,7 @@ public class RecordCommand extends Command {
         }
         addRecord(date);
         data.saveFile();
-//        printNewRecord(patient);
+        //        printNewRecord(patient);
     }
 
     private void addRecord(LocalDate date) throws InvalidInputException {
@@ -55,7 +55,7 @@ public class RecordCommand extends Command {
             prescription = arguments.get(Commons.PRESCRIPTION_KEY);
         }
         data.addRecord(date, symptom, diagnosis, prescription);
-//        patient.addRecord(date, symptom, diagnosis, prescription);
+        //        patient.addRecord(date, symptom, diagnosis, prescription);
     }
 
     private void printNewRecord(Patient patient) {

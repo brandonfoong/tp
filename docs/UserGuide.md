@@ -13,7 +13,7 @@ to organize the records of their patients.
 ## Table of Contents
 
 <!-- TODO: Description -->
-
+* [User Guide Information](#user-guide-information)
 * [Quick Start](#quick-start)
 * [About Command Input](#about-command-input)
   * [Spacing](#spacing)
@@ -32,7 +32,17 @@ to organize the records of their patients.
 * [Command Summary](#command-summary)
 
 ---
+## User Guide Information
 
+This user guide explains how our application works and acts as a guide on how to use our application. It
+also explains how inputs are registered and the correct ways of inputting information. Finally, the user guide also
+includes a summary of all the commands and instructions on how to use each command.
+
+The user guide includes symbols such as:
+
+❗ The exclamation mark highlights important things to take note of.
+
+---
 ## Quick Start
 
 1. Ensure that you have Java 11 installed on your local computer. If you do not have the correct version
@@ -345,10 +355,10 @@ Click on the commands to navigate to specific feature details.
 |-------------------------------------------------------------------------|------------------------------------|
 | [add](#adding-a-patient-add)                                            | `add IC_NUMBER`                    |
 | [current](#displaying-the-current-loaded-patient-current)               | `current`                          |
+| [delete](#deleting-a-patient-or-a-patients-consultation-details-delete) | `delete [/p IC_NUMBER]  [/r DATE]` |
 | [exit](#exiting-the-program-exit)                                       | `exit`                             |
 | [help](#print-a-help-message-help)                                      | `help [OPTIONAL_ARGUMENTS]...`     |
 | [list](#listing-all-patients-list)                                      | `list`                             |
 | [load](#loading-a-patients-medical-records-load)                        | `load IC_NUMBER`                   |
 | [record](#recording-a-patients-consultation-details-record)             | `record [DATE] [/s SYMPTOM] [/d DIAGNOSIS] [/p PRESCRIPTION]`|
 | [retrieve](#retrieving-a-patients-consultation-details-retrieve)        | `retrieve`                         |
-| [delete](#deleting-a-patient-or-a-patients-consultation-details-delete) | `delete [/p IC_NUMBER]  [/r DATE]` |

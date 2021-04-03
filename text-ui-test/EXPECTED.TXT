@@ -38,10 +38,12 @@ List of patients (in alphanumeric order):
 3. S7654321F
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
-Please indicate whether to delete patient or record using /p or /r respectively!
+Input command and/or arguments are invalid:
+	Kindly use /p or /r to indicate patient or record, refer to help for more clarification!
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
-Patient does not exist!
+Input command and/or arguments are invalid:
+	Patient does not exist!
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 Patient S7654321F has been deleted!

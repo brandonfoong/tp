@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DeleteCommandTest {
     @Test
@@ -76,19 +77,11 @@ public class DeleteCommandTest {
         arguments.put("command", "delete");
         DeleteCommand deleteCommand = new DeleteCommand(ui, data, arguments);
 
-        final PrintStream originalOut = System.out;
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(bos));
-
-        try {
+        Exception exception = assertThrows(Exception.class, () -> {
             deleteCommand.execute();
-        } catch (Exception e) {
-            System.out.println("An error occurred while running tests");
-        }
-
-        assertEquals("Please indicate whether to delete patient or record using /p or /r respectively!"
-                + System.lineSeparator(), bos.toString());
-        System.setOut(originalOut);
+        });
+        assertEquals("Kindly use /p or /r to indicate patient or record, refer to help for more clarification!",
+                exception.getMessage());
     }
 
     @Test
@@ -100,18 +93,10 @@ public class DeleteCommandTest {
         arguments.put("p", "S1234567D");
         DeleteCommand deleteCommand = new DeleteCommand(ui, data, arguments);
 
-        final PrintStream originalOut = System.out;
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(bos));
-
-        try {
+        Exception exception = assertThrows(Exception.class, () -> {
             deleteCommand.execute();
-        } catch (Exception e) {
-            System.out.println("An error occurred while running tests");
-        }
-
-        assertEquals("Patient does not exist!" + System.lineSeparator(), bos.toString());
-        System.setOut(originalOut);
+        });
+        assertEquals("Patient does not exist!", exception.getMessage());
     }
 
     @Test

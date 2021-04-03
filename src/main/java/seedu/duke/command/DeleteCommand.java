@@ -32,35 +32,37 @@ public class DeleteCommand extends Command {
             id = id.toUpperCase();
             data.deletePatient(id);
             data.saveFile();
-        }  else if (arguments.containsKey(Commons.RECORD_KEY)) {
-            String date = arguments.get(Commons.RECORD_KEY);
+        } else if (arguments.containsKey(Commons.RECORD_KEY)) {
+            String dateString = arguments.get(Commons.RECORD_KEY);
+            LocalDate date = Commons.parseDate(dateString);
             data.deleteRecord(date);
-//            Patient patient = data.currentPatient;
-//            if (patient == null) {
-//                throw new InvalidInputException(InvalidInputException.Type.NO_PATIENT_LOADED);
-//            }
-//            deleteRecord(patient, date);
+            //            Patient patient = data.currentPatient;
+            //            if (patient == null) {
+            //                throw new InvalidInputException(InvalidInputException.Type.NO_PATIENT_LOADED);
+            //            }
+            //            deleteRecord(patient, date);
             data.saveFile();
         } else {
-            ui.printMessage(Commons.INVALID_INPUT_UNSPECIFIED_DELETE);
+            throw new InvalidInputException(InvalidInputException.Type.UNKNOWN_DELETE_ARGUMENT);
         }
     }
 
     /**
      * Deletes a patient from the list.
+     *
      * @param id Unique identifier of the patient to be retrieved
      */
-    private void deletePatient(String id) {
+    private void deletePatient(String id) throws InvalidInputException {
         if (data.getPatient(id) == null) {
-            ui.printMessage("Patient does not exist!");
-            return;
+            throw new InvalidInputException(InvalidInputException.Type.PATIENT_NOT_FOUND);
         }
-//        data.deletePatient(id);
+        //        data.deletePatient(id);
         ui.printMessage("Patient " + id + " has been deleted!");
     }
 
     /**
      * Deletes a record a patient's consultation details.
+     *
      * @param patient    Patient of record that is being deleted
      * @param dateString Date of record that is being deleted
      * @throws InvalidInputException when an invalid date is given

@@ -49,15 +49,16 @@ public class AddCommand extends Command {
      */
     private boolean checkID(String id) {
         int stringLength = id.length();
-        int checksum = 0;
-        char firstLetter = id.charAt(Commons.INDEX_OF_FIRST_CHARACTER);
-        char[] st = {'J', 'Z', 'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'};
-        char[] fg = {'X', 'W', 'U', 'T', 'R', 'Q', 'P', 'N', 'M', 'L', 'K'};
 
         // Checks if ID has 9 characters
         if (stringLength != Commons.ID_NUMBER_OF_CHARACTERS) {
             return false;
         }
+
+        int checksum = 0;
+        char firstLetter = id.charAt(Commons.INDEX_OF_FIRST_CHARACTER);
+        char[] st = {'J', 'Z', 'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'};
+        char[] fg = {'X', 'W', 'U', 'T', 'R', 'Q', 'P', 'N', 'M', 'L', 'K'};
         // Checks if ID is valid
         for (int i = 0; i < stringLength; i++) {
             char c = id.charAt(i);

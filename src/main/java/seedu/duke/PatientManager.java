@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.command.Command;
+import seedu.duke.exception.InvalidInputException;
 import seedu.duke.exception.StorageException;
 
 /**
@@ -40,9 +41,15 @@ public class PatientManager {
         ui.printWelcome();
 
         while (true) {
-            String fullCommand = ui.readInput();
+            String fullCommand = null;
+            try {
+                fullCommand = ui.readInput();
+            } catch (InvalidInputException invalidInputException) {
+                ui.printException(invalidInputException);
+                break;
+            }
             if (fullCommand == null) {
-                // Reached EOF but no exit command is executed - we still exit
+                // Reached EOF from text ui tests but no exit command is executed - we still exit
                 break;
             }
 

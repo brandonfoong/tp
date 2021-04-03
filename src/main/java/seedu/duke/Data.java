@@ -68,7 +68,7 @@ public class Data {
     }
 
     /**
-     * Gets the ID number of the currently loaded patient
+     * Gets the ID number of the currently loaded patient.
      *
      * @return ID number of the currently loaded patient
      * @throws InvalidInputException if there is no loaded patient
@@ -79,7 +79,7 @@ public class Data {
     }
 
     /**
-     * Adds a visit record to the currently loaded patient
+     * Adds a visit record to the currently loaded patient.
      *
      * @param date         the date of visit
      * @param symptom      symptom(s) experienced by the patient
@@ -94,7 +94,7 @@ public class Data {
     }
 
     /**
-     * Prints out all records of the currently loaded patient
+     * Prints out all records of the currently loaded patient.
      *
      * @return a String containing the patient's records
      * @throws InvalidInputException if there is no loaded patient
@@ -104,7 +104,7 @@ public class Data {
     }
 
     /**
-     * Prints out all records of the currently loaded patient for a specific date
+     * Prints out all records of the currently loaded patient for a specific date.
      *
      * @param date the date to retrieve records for
      * @return a String containing the patient's records for that date
@@ -116,7 +116,7 @@ public class Data {
     }
 
     /**
-     * Removes a patient, based on the ID number specified
+     * Removes a patient, based on the ID number specified.
      *
      * @param id the ID number of the patient to remove
      * @throws InvalidInputException if the patient does not exist, or if the specified patient is loaded
@@ -130,7 +130,7 @@ public class Data {
     }
 
     /**
-     * Removes a visit record from the currently loaded patient, based on the visit date
+     * Removes a visit record from the currently loaded patient, based on the visit date.
      *
      * @param date the date of the record to be removed
      * @throws InvalidInputException if there is no loaded patient,
@@ -142,7 +142,7 @@ public class Data {
     }
 
     /**
-     * Loads a existing patient into the currentPatient variable, based on the ID number specified
+     * Loads a existing patient into the currentPatient variable, based on the ID number specified.
      *
      * @param id the ID number of the patient to be loaded
      * @throws InvalidInputException if no patient corresponds to the specified ID number

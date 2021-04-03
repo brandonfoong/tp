@@ -60,13 +60,18 @@ public class Commons {
     public static final String INVALID_INPUT_INVALID_NRIC = "Please key in a valid NRIC number!";
     public static final String INVALID_INPUT_PATIENT_EXISTED = "Patient already exists!";
     public static final String INVALID_INPUT_NO_PATIENT_LOADED = "No patient loaded!";
-    public static final String INVALID_INPUT_EMPTY_DESCRIPTION = "Please provide details about the patient's visit!";
+    public static final String INVALID_INPUT_EMPTY_DESCRIPTION =
+            "Please provide more details about the patient's visit!"
+                    + System.lineSeparator() + EXCEPTION_INDENT
+                    + "(At least one symptom, diagnosis or prescription must be specified)";
     public static final String INVALID_INPUT_INVALID_DATE = "Please provide a valid date (format: dd/MM/yyyy).";
     public static final String INVALID_INPUT_INVALID_PATIENT = "Patient\'s data is not found.";
     public static final String INVALID_INPUT_REMOVE_LOADED_PATIENT = "Can't remove the currently loaded patient!";
-    public static final String INVALID_INPUT_UNSPECIFIED_DELETE = "Please indicate whether to delete patient or record"
-            + "using /p or /r respectively!";
     public static final String INVALID_INPUT_NO_RECORD_FOUND = "No records found for the specified date.";
+    public static final String INVALID_INPUT_UNSPECIFIED_DELETE = "Kindly use /p or /r to indicate patient or "
+            + "record, refer to help for more clarification!";
+    public static final String INVALID_INPUT_PATIENT_NOT_FOUND = "Patient does not exist!";
+    public static final String INVALID_INPUT_END_OF_FILE = "End of file reached, exiting application.";
 
     public static final String STORAGE = "Something wrong happen when trying to save/load data";
     public static final String STORAGE_FILE_CREATION_FAIL = "Failed to create a save file.";
@@ -97,7 +102,6 @@ public class Commons {
     public static final String SYMPTOM_KEY = "s";
     public static final String DIAGNOSIS_KEY = "d";
     public static final String PRESCRIPTION_KEY = "p";
-    public static final String EXCEPTION_RECORD_RETRIEVE_INVALID_DATE = "That's not a valid date";
 
     // Date format
     public static final String DATE_PATTERN = "dd/MM/yyyy";
@@ -117,7 +121,7 @@ public class Commons {
     public static final String STORAGE_DEFAULT_PATH = "./pm.save";
 
     /**
-     * Parses a string following the dd/MM/yyyy format into a LocalDate object
+     * Parses a string following the dd/MM/yyyy format into a LocalDate object.
      * @param dateString date formatted as dd/MM/yyyy
      * @return the parsed LocalDate object
      * @throws DateTimeParseException if the date is invalid, or does not follow the required format

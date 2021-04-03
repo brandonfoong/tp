@@ -24,16 +24,16 @@ public class RetrieveCommand extends Command {
         String recordString = data.getRecords();
         ui.printMessage("Here are " + data.getCurrentPatientId() + "'s records:");
         ui.printMessage(recordString);
-//        TreeMap<LocalDate, Record> records = patient.getRecords();
-//        for (Map.Entry<LocalDate, Record> entry : records.entrySet()) {
-//            LocalDate date = entry.getKey();
-//            Record record = entry.getValue();
-//            printRecord(date, record);
-//        }
+        //        TreeMap<LocalDate, Record> records = patient.getRecords();
+        //        for (Map.Entry<LocalDate, Record> entry : records.entrySet()) {
+        //            LocalDate date = entry.getKey();
+        //            Record record = entry.getValue();
+        //            printRecord(date, record);
+        //        }
     }
 
-//    private void printRecord(LocalDate date, Record record) {
-//        ui.printMessage(date.format(DateTimeFormatter.ofPattern(Constants.DATE_PATTERN)) + ":");
-//        ui.printMessage(record.toString());
-//    }
+    //    private void printRecord(LocalDate date, Record record) {
+    //        ui.printMessage(date.format(DateTimeFormatter.ofPattern(Constants.DATE_PATTERN)) + ":");
+    //        ui.printMessage(record.toString());
+    //    }
 }
