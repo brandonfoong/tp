@@ -31,6 +31,7 @@ public class DeleteCommand extends Command {
             String id = arguments.get(Commons.PATIENT_KEY);
             id = id.toUpperCase();
             data.deletePatient(id);
+            ui.printMessage("Patient " + id + " has been deleted!");
             data.saveFile();
         } else if (arguments.containsKey(Commons.RECORD_KEY)) {
             String dateString = arguments.get(Commons.RECORD_KEY);
@@ -41,6 +42,7 @@ public class DeleteCommand extends Command {
             //                throw new InvalidInputException(InvalidInputException.Type.NO_PATIENT_LOADED);
             //            }
             //            deleteRecord(patient, date);
+            ui.printMessage("Record for " + date + " has been deleted!");
             data.saveFile();
         } else {
             throw new InvalidInputException(InvalidInputException.Type.UNKNOWN_DELETE_ARGUMENT);
@@ -56,7 +58,7 @@ public class DeleteCommand extends Command {
         if (data.getPatient(id) == null) {
             throw new InvalidInputException(InvalidInputException.Type.PATIENT_NOT_FOUND);
         }
-        //        data.deletePatient(id);
+        data.deletePatient(id);
         ui.printMessage("Patient " + id + " has been deleted!");
     }
 

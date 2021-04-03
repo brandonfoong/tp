@@ -68,8 +68,8 @@ public class Commons {
     public static final String INVALID_INPUT_INVALID_PATIENT = "Patient\'s data is not found.";
     public static final String INVALID_INPUT_REMOVE_LOADED_PATIENT = "Can't remove the currently loaded patient!";
     public static final String INVALID_INPUT_NO_RECORD_FOUND = "No records found for the specified date.";
-    public static final String INVALID_INPUT_UNSPECIFIED_DELETE = "Kindly use /p or /r to indicate patient or "
-            + "record, refer to help for more clarification!";
+    public static final String INVALID_INPUT_UNSPECIFIED_DELETE =
+            "Kindly use /p or /r to indicate patient or record, refer to help for more clarification!";
     public static final String INVALID_INPUT_PATIENT_NOT_FOUND = "Patient does not exist!";
     public static final String INVALID_INPUT_END_OF_FILE = "End of file reached, exiting application.";
 
@@ -122,6 +122,7 @@ public class Commons {
 
     /**
      * Parses a string following the dd/MM/yyyy format into a LocalDate object.
+     *
      * @param dateString date formatted as dd/MM/yyyy
      * @return the parsed LocalDate object
      * @throws DateTimeParseException if the date is invalid, or does not follow the required format

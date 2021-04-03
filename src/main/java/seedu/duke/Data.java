@@ -1,12 +1,15 @@
 package seedu.duke;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.NavigableSet;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 import seedu.duke.exception.InvalidInputException;
 import seedu.duke.exception.StorageException;
 import seedu.duke.model.Patient;
+import seedu.duke.model.Record;
 
 /**
  * This class (instance) contains all data of the running application. This
@@ -57,7 +60,7 @@ public class Data {
 
     private void checkPatientExists(String id) throws InvalidInputException {
         if (!patients.containsKey(id)) {
-            throw new InvalidInputException(InvalidInputException.Type.INVALID_PATIENT);
+            throw new InvalidInputException(InvalidInputException.Type.PATIENT_NOT_FOUND);
         }
     }
 
@@ -79,18 +82,21 @@ public class Data {
     }
 
     /**
-     * Adds a visit record to the currently loaded patient.
+     * Adds a visit record to the currently loaded patient, and returns a string containing the
+     * records added as a confirmation.
      *
      * @param date         the date of visit
      * @param symptom      symptom(s) experienced by the patient
      * @param diagnosis    diagnosis/es made by the doctor
      * @param prescription prescription(s) made by the doctor
+     * @return A string containing the records that were added
      * @throws InvalidInputException if there is no loaded patient
      */
-    public void addRecord(LocalDate date, String symptom, String diagnosis, String prescription)
+    public String addRecord(LocalDate date, String symptom, String diagnosis, String prescription)
             throws InvalidInputException {
         checkPatientLoaded();
         currentPatient.addRecord(date, symptom, diagnosis, prescription);
+        return currentPatient.recentlyAdded();
     }
 
     /**
@@ -100,7 +106,13 @@ public class Data {
      * @throws InvalidInputException if there is no loaded patient
      */
     public String getRecords() throws InvalidInputException {
-        return "";
+        TreeMap<LocalDate, Record> records = currentPatient.getRecords();
+        NavigableSet<LocalDate> dates = records.descendingKeySet();
+        String recordString = "";
+        for (LocalDate date : dates) {
+            recordString += getRecords(date);
+        }
+        return recordString;
     }
 
     /**
@@ -112,7 +124,16 @@ public class Data {
      *                               or if the patient does not have any records on that date
      */
     public String getRecords(LocalDate date) throws InvalidInputException {
-        return "";
+        TreeMap<LocalDate, Record> records = currentPatient.getRecords();
+        if (!records.containsKey(date)) {
+            throw new InvalidInputException(InvalidInputException.Type.NO_RECORD_FOUND);
+        }
+        Record record = records.get(date);
+        String recordString = date.format(DateTimeFormatter.ofPattern(Commons.DATE_PATTERN))
+                + ":"
+                + System.lineSeparator()
+                + record.toString();
+        return recordString;
     }
 
     /**
@@ -123,7 +144,7 @@ public class Data {
      */
     public void deletePatient(String id) throws InvalidInputException {
         checkPatientExists(id);
-        if (currentPatient.getID() == id) {
+        if (currentPatient != null && currentPatient.getID() == id) {
             throw new InvalidInputException(InvalidInputException.Type.REMOVE_LOADED_PATIENT);
         }
         patients.remove(id);

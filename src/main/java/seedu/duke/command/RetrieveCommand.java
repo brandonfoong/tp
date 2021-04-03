@@ -1,9 +1,11 @@
 package seedu.duke.command;
 
+import seedu.duke.Commons;
 import seedu.duke.Data;
 import seedu.duke.Ui;
 import seedu.duke.exception.InvalidInputException;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 
 public class RetrieveCommand extends Command {
@@ -21,7 +23,14 @@ public class RetrieveCommand extends Command {
     @Override
     public void execute() throws InvalidInputException {
         assert ui != null : "Ui must not be null";
-        String recordString = data.getRecords();
+        String dateString = arguments.get(Commons.PAYLOAD_KEY);
+        String recordString = null;
+        if (!dateString.isEmpty()) {
+            LocalDate date = Commons.parseDate(dateString);
+            recordString = data.getRecords(date);
+        } else {
+            recordString = data.getRecords();
+        }
         ui.printMessage("Here are " + data.getCurrentPatientId() + "'s records:");
         ui.printMessage(recordString);
         //        TreeMap<LocalDate, Record> records = patient.getRecords();

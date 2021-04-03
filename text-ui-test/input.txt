@@ -14,7 +14,7 @@ help
 current
 load S1234567D
 record 31/03/2021 /s coughing
-retrieve
+retrieve 31/03/2021
 delete /r 31/03/2021
 retrieve
 current

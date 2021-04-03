@@ -36,12 +36,13 @@ public class RecordCommand extends Command {
         } catch (DateTimeParseException dateTimeParseException) {
             throw new InvalidInputException(InvalidInputException.Type.INVALID_DATE);
         }
-        addRecord(date);
+        String recordString = addRecord(date);
+        ui.printMessage("Added new record to patient " + data.getCurrentPatientId() + ":");
+        ui.printMessage(recordString);
         data.saveFile();
-        //        printNewRecord(patient);
     }
 
-    private void addRecord(LocalDate date) throws InvalidInputException {
+    private String addRecord(LocalDate date) throws InvalidInputException {
         String symptom = null;
         String diagnosis = null;
         String prescription = null;
@@ -54,8 +55,7 @@ public class RecordCommand extends Command {
         if (arguments.containsKey(Commons.PRESCRIPTION_KEY)) {
             prescription = arguments.get(Commons.PRESCRIPTION_KEY);
         }
-        data.addRecord(date, symptom, diagnosis, prescription);
-        //        patient.addRecord(date, symptom, diagnosis, prescription);
+        return data.addRecord(date, symptom, diagnosis, prescription);
     }
 
     private void printNewRecord(Patient patient) {
